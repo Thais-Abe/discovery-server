@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: msclientes
+
+server:
+  port: 0 # Porta aleatória (pode manter assim, mas vamos testar com porta fixa também)
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    lease-expiration-duration-in-seconds: 90 # Tempo de expiração de 30 segundos
+    lease-renewal-interval-in-seconds: 10 # Intervalo de renovação de 10 segundos
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
