@@ -1,36 +1,25 @@
-package com.thais.msclients.domain;
+package com.thais.msclients.application.representation;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.thais.msclients.domain.Client;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Entity
-public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+public class ClientSaveRequest {
     private String cpf;
     private String name;
     private Integer age;
 
-    public Client() {
+    public Client toModel(){
+        return new Client(this.name, this.cpf, this.age);
     }
 
-    public Client(String name, String cpf, Integer age) {
+    public ClientSaveRequest() {
+    }
+
+    public ClientSaveRequest(String cpf, String name, Integer age) {
         this.cpf = cpf;
         this.name = name;
         this.age = age;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCpf() {
