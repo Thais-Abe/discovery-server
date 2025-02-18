@@ -17,5 +17,6 @@ public class ClientCard {
     @ManyToOne
     @JoinColumn(name = "id_card")
     private Card card;
+    @Column(name = "card_limit")
     private BigDecimal limit;
 }
